@@ -2,6 +2,7 @@ import {
 	ArrowLeftIcon,
 	ArrowsOutSimpleIcon,
 	CheckIcon,
+	ClockIcon,
 	CopyIcon,
 	MonitorIcon,
 } from '@phosphor-icons/react';
@@ -16,7 +17,22 @@ import {
 import { Reveal } from '@/components/Section';
 import { Button } from '@/components/ui/button';
 import { DEMOS } from '@/pages/demos';
-import { blocks, REGISTRY_ORIGIN } from '@/registry-index';
+import { blocks, REGISTRY_ORIGIN, REGISTRY_READY } from '@/registry-index';
+
+/**
+ * Stands in for the install command until the registry is published. Showing the
+ * real command early would hand out a URL the CLI cannot fetch.
+ */
+function ComingSoon() {
+	return (
+		<div className="flex items-center gap-2 rounded-card border border-dashed border-card-border px-3 py-2.5">
+			<ClockIcon size={14} className="shrink-0 text-faint" />
+			<span className="font-mono text-[11px] text-faint sm:text-xs">
+				Coming soon to the shadcn registry
+			</span>
+		</div>
+	);
+}
 
 function InstallCommand({ slug }: { slug: string }) {
 	const command = `npx shadcn@latest add ${REGISTRY_ORIGIN}/r/${slug}.json`;
@@ -79,7 +95,7 @@ export function ComponentsPage() {
 				</a>
 				<h1 className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">Components</h1>
 				<p className="mt-4 max-w-[58ch] text-[14px] leading-[1.8] text-muted-foreground sm:text-[15px]">
-					Pieces I kept rebuilding across client work, pulled out and published as a shadcn
+					Pieces I kept rebuilding across client work, pulled out to be published as a shadcn
 					registry. Install one with the CLI and it lands in your project as code you own. Each
 					block is router agnostic and reaches for no session, store or translator, so nothing about
 					it is tied to the app it came from.
@@ -150,8 +166,8 @@ export function ComponentsPage() {
 									closeButtonClassName="top-3 right-3 size-8 border border-card-border bg-background/90 text-foreground backdrop-blur hover:bg-muted"
 								>
 									<div
-									data-lenis-prevent
-									className={`${FRAME_CLASS} h-[calc(100svh-1.5rem)] rounded-card`}
+										data-lenis-prevent
+										className={`${FRAME_CLASS} h-[calc(100svh-1.5rem)] rounded-card`}
 										style={FRAME_STYLE}
 									>
 										<Suspense fallback={previewFallback}>
@@ -164,7 +180,7 @@ export function ComponentsPage() {
 							</ExpandableScreen>
 
 							<div className="mt-4">
-								<InstallCommand slug={block.slug} />
+								{REGISTRY_READY ? <InstallCommand slug={block.slug} /> : <ComingSoon />}
 							</div>
 
 							{block.notes ? (
@@ -181,6 +197,11 @@ export function ComponentsPage() {
 
 			<Reveal className="mt-24 border-t border-card-border pt-8">
 				<h2 className="text-base font-medium tracking-tight">Using the registry</h2>
+				{REGISTRY_READY ? null : (
+					<p className="mt-3 font-mono text-[11px] text-faint">
+						Not live yet. The URLs below are what the commands will look like.
+					</p>
+				)}
 				<p className="mt-3 max-w-[62ch] text-[13.5px] leading-[1.8] text-muted-foreground">
 					A shadcn registry is static JSON. The CLI fetches the URL, installs the npm packages the
 					item declares, resolves the registry items it depends on, and writes the files using your

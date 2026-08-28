@@ -14,7 +14,6 @@ import { SmoothCursor } from '../registry/smooth-cursor/smooth-cursor';
 import { Stack } from '@/components/Stack';
 import { site } from '@/data';
 import { readStoredRing } from '@/hooks/useAccent';
-import { REGISTRY_READY } from '@/registry-index';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { useRoute } from '@/router';
 
@@ -129,10 +128,7 @@ export default function App() {
 	};
 
 	// /components/<slug> shows one block filling the window, with no site chrome.
-	// Both component routes fall through to the home page until the registry is
-	// published, so a stale link cannot land on install commands that do not work.
-	const previewSlug =
-		REGISTRY_READY && route.startsWith('/components/') ? route.slice('/components/'.length) : null;
+	const previewSlug = route.startsWith('/components/') ? route.slice('/components/'.length) : null;
 
 	if (previewSlug) {
 		return (
@@ -148,7 +144,7 @@ export default function App() {
 			{ring && <SmoothCursor />}
 			<Nav route={route} />
 			<div className="relative">
-				{REGISTRY_READY && route === '/components' ? (
+				{route === '/components' ? (
 					<Suspense fallback={<div className="h-[100dvh]" />}>
 						<ComponentsPage />
 					</Suspense>

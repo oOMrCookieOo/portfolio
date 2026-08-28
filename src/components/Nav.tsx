@@ -1,17 +1,15 @@
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { REGISTRY_READY } from '@/registry-index';
 
 const linkClass =
 	'nav-link relative text-sm text-muted-foreground transition-colors hover:text-foreground data-[active=true]:font-medium data-[active=true]:text-foreground';
 
-/** Home, and Components once the registry is live. The sections live in the sidebar rail. */
+/** Home and Components. The sections live in the sidebar rail. */
 export function Nav({ route }: { route: string }) {
 	const onHome = route === '/';
 
 	const links = [
 		{ href: onHome ? '#top' : '/', label: 'Home', active: onHome },
-		// The components page is held back until the registry is published.
-		...(REGISTRY_READY ? [{ href: '/components', label: 'Components', active: !onHome }] : []),
+		{ href: '/components', label: 'Components', active: !onHome },
 	];
 
 	return (

@@ -146,10 +146,10 @@ being written out separately.
 | `/` | the portfolio |
 | `/components` | the registry blocks, with live previews and install commands |
 
-`/components` is held back while `REGISTRY_READY` in `src/registry-index.ts` is `false`:
-the home section says coming soon and is not a link, the header drops its Components item,
-and both component routes fall through to the home page, so a stale link cannot reach
-install commands that resolve to nothing. Flip the flag once `public/r` is published.
+The page, its previews and the fullscreen route all work. While `REGISTRY_READY` in
+`src/registry-index.ts` is `false`, only the install commands are held back: every block
+shows "Coming soon to the shadcn registry" where its install line goes, so nobody copies a
+URL the CLI cannot fetch. Flip the flag once `public/r` is published.
 
 Routing is 40 lines in `src/router.tsx`: read the pathname, listen for popstate,
 intercept clicks on internal links. Hash links are left alone because the section
