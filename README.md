@@ -35,7 +35,8 @@ used.
 
 ## Where things are
 
-- `src/data.ts` is the only file with content in it. Name, bio, jobs, projects, links, stack. Edit there.
+- `src/data.ts` is the only file with content in it. Name, bio, jobs, projects, links, stack, and `site.variant`, which picks the layout that ships. Edit there.
+- `src/sections.ts` the section labels and `railFor()`, which builds a rail from the sections a layout renders.
 - `src/components/*` one file per section.
 - `src/components/PageLayout.tsx` the shipped layout. `Sidebar.tsx` is the sticky column.
 - `src/components/ui/*` shadcn components. `button` and `badge` are retuned to this project. `github-activity` came from the rare-ui registry.
@@ -90,8 +91,53 @@ six palettes and the custom cursor toggle.
 
 P renders `PageLayout` itself, so there is one source of truth for the real page.
 
-To retire the alternatives later, delete `src/prototype/` and the `showPrototypes` branch
-in `App.tsx`. Nothing in the shipped page imports from that folder.
+## Shipping a different layout
+
+One line in `src/data.ts`:
+
+```ts
+export const site = {
+	variant: 'P', // any key from the table above
+} as const;
+```
+
+That layout then renders for every visitor, with no switcher pill attached. `?variant=`
+still overrides it for a look, and dev still shows the pill, so browsing is unchanged.
+
+```bash
+npm run build
+npm run preview    # check the layout, and that no pill is in the corner
+```
+
+A pill on the preview means the URL still carries `?prototypes=1` or `?variant=`.
+
+Two settings are not in `site` yet:
+
+- **Palette.** Per visitor, kept in `localStorage`, defaulting to graphite. To change the
+  default for everyone, set it in the pre-paint script in `index.html`:
+  `document.documentElement.dataset.palette = 'ink'`. Values: `ink`, `slate-amber`,
+  `forest`, `oxide`, `mono`, or drop the line for graphite. It has to happen there rather
+  than in React, or the page paints the wrong palette first.
+- **Custom cursor.** On unless storage says otherwise, in `readStoredRing`
+  (`src/hooks/useAccent.ts`).
+
+Every layout except P lives in the prototype chunk, so shipping one costs every visitor
+about 8 kB gzipped and a second request. Worth collapsing once the choice is final: move
+that shell into `src/components/`, render it in `App.tsx` where `PageLayout` is now, give
+it a rail with `railFor([...])` listing the sections it renders, then delete
+`src/prototype/`, the `showPrototypes` branch and the `?variant=` plumbing. Variant N is
+the exception: it carries no rail.
+
+Nothing in the shipped page imports from `src/prototype/`, so that folder can go whenever
+the alternatives stop earning their keep.
+
+## Sections and the rail
+
+`src/sections.ts` holds one label per section and `railFor(ids)`, which turns a list of
+section ids into rail items. Each layout passes the list it actually renders: `PageLayout`
+its eight, the sidebar variants their six. A rail entry with no matching section on the
+page never lights up, which is why the list lives next to the render list rather than
+being written out separately.
 
 ## Routes
 
