@@ -5,8 +5,10 @@ import type { RegistryBlock } from '@/types';
  * `npx shadcn build` turns into public/r/*.json.
  */
 
-// The registry is not published yet, so the components page and its links are
-// held back and the section says so. Flip to true once public/r is live.
+// The registry is not published yet. The components page, its previews and the
+// fullscreen route all stay live; this holds back only the per-block install
+// command, the registry explainer's example and the copy that promises both.
+// Flip to true once public/r is live.
 export const REGISTRY_READY = false;
 
 // Change this to the deployed domain, or the copy buttons hand out a dead URL.

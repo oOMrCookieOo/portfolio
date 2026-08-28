@@ -33,12 +33,13 @@ const GithubSection = lazy(() =>
 );
 
 /*
-	The shipped layout is P. Every other variant still exists behind a toggle:
-	dev always shows the switcher, and any build shows it when the URL asks, with
+	site.variant in data.ts picks the layout. P is the only one that renders from a
+	static import; the rest live in the prototype chunk, which is also what the
+	switcher browses, with
 		?prototypes=1   or   ?variant=E
-	The prototype tree is a lazy chunk, so a normal visit never downloads it.
+	So a P site never downloads that chunk, and any other choice does.
 */
-const SHIPPED: VariantKey = 'P';
+const STATIC_VARIANT: VariantKey = 'P';
 
 const Prototype = lazy(() => import('@/prototype/PrototypeHeroes')) as ComponentType<{
 	variant: VariantKey;
@@ -56,12 +57,12 @@ function prototypesRequested() {
 	return import.meta.env.DEV || params.has('prototypes') || params.has('variant');
 }
 
-// data.ts picks the layout that ships. The URL only overrides it for a look.
+// data.ts picks the layout that ships. The URL only overrides it for a look, and
+// it is the only untrusted half, so it is the only half that needs checking:
+// site.variant is typed, so a typo there is a compile error.
 function readVariant(): VariantKey {
 	const asked = query().get('variant')?.toUpperCase() as VariantKey;
-	if (VARIANT_KEYS.includes(asked)) return asked;
-	const chosen = site.variant as VariantKey;
-	return VARIANT_KEYS.includes(chosen) ? chosen : SHIPPED;
+	return VARIANT_KEYS.includes(asked) ? asked : site.variant;
 }
 
 export default function App() {
@@ -117,13 +118,13 @@ export default function App() {
 					<Suspense fallback={<div className="h-[100dvh]" />}>
 						<ComponentsPage />
 					</Suspense>
-				) : showPrototypes || variant !== SHIPPED ? (
+				) : showPrototypes || variant !== STATIC_VARIANT ? (
 					/*
 						Any layout other than P lives in the prototype chunk, so shipping one
 						means loading it for everyone. The switcher pill is a separate
 						question: it only appears when the URL or a dev build asks for it.
 					*/
-					<Suspense fallback={null}>
+					<Suspense fallback={<div className="h-[100dvh]" />}>
 						<Prototype
 							variant={variant}
 							onPick={pick}

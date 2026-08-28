@@ -1,7 +1,7 @@
 // Everything editable lives here. Sections read from this file only.
 // The shapes live in types.ts.
 
-import type { Experience, Project, StackGroup } from '@/types';
+import type { Experience, Project, StackGroup, VariantKey } from '@/types';
 
 /**
  * Which layout ships. 'P' is the sticky sidebar in components/PageLayout.tsx;
@@ -11,7 +11,7 @@ import type { Experience, Project, StackGroup } from '@/types';
  */
 export const site = {
 	variant: 'P',
-} as const;
+} as const satisfies { variant: VariantKey };
 
 export const profile = {
 	name: 'Maali Mohamed Islam',

@@ -4,7 +4,7 @@ import { Sidebar } from '@/components/Sidebar';
 import { railFor } from '@/sections';
 
 // The order here is the order App renders the sections in.
-export const RAIL = railFor([
+const RAIL = railFor([
 	'about',
 	'stack',
 	'work',

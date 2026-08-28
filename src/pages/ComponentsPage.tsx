@@ -95,10 +95,13 @@ export function ComponentsPage() {
 				</a>
 				<h1 className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">Components</h1>
 				<p className="mt-4 max-w-[58ch] text-[14px] leading-[1.8] text-muted-foreground sm:text-[15px]">
-					Pieces I kept rebuilding across client work, pulled out to be published as a shadcn
-					registry. Install one with the CLI and it lands in your project as code you own. Each
-					block is router agnostic and reaches for no session, store or translator, so nothing about
-					it is tied to the app it came from.
+					Pieces I kept rebuilding across client work, pulled out and{' '}
+					{REGISTRY_READY ? 'published' : 'being published'} as a shadcn registry.{' '}
+					{REGISTRY_READY
+						? 'Install one with the CLI and it lands in your project as code you own.'
+						: 'Each will install with the CLI and land in your project as code you own.'}{' '}
+					Each block is router agnostic and reaches for no session, store or translator, so nothing
+					about it is tied to the app it came from.
 				</p>
 				<div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] text-faint">
 					<span>{blocks.length} blocks</span>

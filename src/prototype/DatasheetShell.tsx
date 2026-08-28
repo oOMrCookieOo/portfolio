@@ -1,4 +1,4 @@
-// PROTOTYPE, dev builds only. Variant N: the record as a datasheet.
+// Variant N: the record as a datasheet.
 import { PlusIcon } from '@phosphor-icons/react';
 import type { ReactNode } from 'react';
 

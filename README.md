@@ -125,8 +125,9 @@ Every layout except P lives in the prototype chunk, so shipping one costs every 
 about 8 kB gzipped and a second request. Worth collapsing once the choice is final: move
 that shell into `src/components/`, render it in `App.tsx` where `PageLayout` is now, give
 it a rail with `railFor([...])` listing the sections it renders, then delete
-`src/prototype/`, the `showPrototypes` branch and the `?variant=` plumbing. Variant N is
-the exception: it carries no rail.
+`src/prototype/`, the `showPrototypes` branch and the `?variant=` plumbing. Only the sticky
+sidebar layouts carry a rail at all: the datasheet, the columns shell and the plain hero
+variants have none.
 
 Nothing in the shipped page imports from `src/prototype/`, so that folder can go whenever
 the alternatives stop earning their keep.
@@ -173,7 +174,7 @@ before first paint.
 ## Images
 
 - `public/me.webp`, square, 400px or more, set as `profile.avatar`. Without it the avatar
-  falls back to an `IM` monogram.
+  falls back to the initials of `profile.name`.
 - Hover previews live in `public/previews/`, referenced by the `preview` field on a job or
   a project. A row with no `preview` shows its name in the tile instead of a screenshot.
   Captures are 1280px wide webp, quality 82, which lands them around 30 to 60 kB.

@@ -1,6 +1,6 @@
 /*
-	PROTOTYPE, dev builds only. Shell variants change the whole page layout, not
-	just the hero, so they take the rest of the page as children.
+	Shell variants change the whole page layout, not just the hero, so they take
+	the rest of the page as children.
 	The sticky sidebar takes its header from a swappable component, which is how
 	G, J, K, L and O differ: same layout, five different identity treatments.
 */

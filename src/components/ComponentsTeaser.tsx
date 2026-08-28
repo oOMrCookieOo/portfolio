@@ -1,7 +1,7 @@
 import { ArrowUpRightIcon } from '@phosphor-icons/react';
 
 import { Reveal, Section } from '@/components/Section';
-import { blocks } from '@/registry-index';
+import { blocks, REGISTRY_READY } from '@/registry-index';
 
 /** Home-page pointer at the components page. */
 export function ComponentsTeaser() {
@@ -14,8 +14,9 @@ export function ComponentsTeaser() {
 				>
 					<div className="flex items-start justify-between gap-4">
 						<p className="max-w-[46ch] text-[13.5px] leading-[1.8] font-[450] text-muted-foreground sm:text-[14.5px]">
-							Pieces I kept rebuilding across client work. Each one runs on this site, and they are
-							going up as a shadcn registry so you can install them with the CLI.
+							Pieces I kept rebuilding across client work. Each one runs on this site, and they{' '}
+							{REGISTRY_READY ? 'are published' : 'are going up'} as a shadcn registry you can
+							install with the CLI.
 						</p>
 						<ArrowUpRightIcon
 							size={16}

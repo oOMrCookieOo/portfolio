@@ -1,5 +1,6 @@
 /*
-	PROTOTYPE, dev builds only. Owns every variant:
+	Owns every variant. Dev shows the switcher over them, and site.variant in
+	data.ts can ship any one of them:
 	- hero swaps that keep the normal single column: A B C D E F I M
 	- sticky sidebar shells, same layout with four different headers: G J K L
 	- the paco columns shell: H
@@ -55,6 +56,12 @@ const SIDEBAR_HEADERS: Record<string, ComponentType> = {
 	O: AboutFirstHeader,
 };
 
+// The sections the shells below render, in order, and the rail built from them.
+// Keep this in step with the `everything` fragment below: they are two lists of the
+// same thing, and railFor only guarantees the labels, not that both were updated.
+const EVERYTHING_IDS = ['github', 'stack', 'projects', 'work', 'background', 'contact'] as const;
+const EVERYTHING_RAIL = railFor(EVERYTHING_IDS);
+
 // Columns for the paco flavoured shell, built from the same data as everything else.
 const columns = [
 	{
@@ -107,9 +114,6 @@ export default function PrototypeHeroes({
 			onRingChange={onRingChange}
 		/>
 	) : null;
-
-	// The rail is built from this list, so the two cannot drift apart.
-	const everythingIds = ['github', 'stack', 'projects', 'work', 'background', 'contact'] as const;
 
 	const everything = (
 		<>
@@ -164,7 +168,7 @@ export default function PrototypeHeroes({
 	if (SidebarHeader) {
 		return (
 			<>
-				<SidebarShell header={SidebarHeader} rail={railFor(everythingIds)}>
+				<SidebarShell header={SidebarHeader} rail={EVERYTHING_RAIL}>
 					{everything}
 				</SidebarShell>
 				{switcher}
