@@ -1,0 +1,5 @@
+# Netlify and Cloudflare Pages: serve the app for every path, so /components works
+# on a hard load and not only on a client navigation. The registry JSON is excluded
+# explicitly rather than relying on static files shadowing the rule.
+/r/*  /r/:splat  200
+/*    /index.html  200
