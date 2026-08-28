@@ -19,6 +19,8 @@ const TAG_ICONS: Record<string, string> = {
 	'AWS Lambda': 'lambda',
 	DynamoDB: 'dynamodb',
 	PostgreSQL: 'postgres',
+	Docker: 'docker',
+	Fastify: 'fastify',
 };
 
 /** Stack chip with its brand mark, so the open row shows the same marks as the stack section. */

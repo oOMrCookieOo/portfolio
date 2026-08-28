@@ -161,6 +161,14 @@ export type Project = {
 
 export const projects: Project[] = [
 	{
+		name: 'Inex',
+		role: 'Flows, screens and the services under them',
+		blurb:
+			'Shipping platform for Canadian businesses: one lane and parcel form, live quotes pulled from every connected carrier, then booking and tracking in the same flow. I am rebuilding the client facing portal end to end, and I designed the flows and the screens before building them.',
+		tags: ['Next.js', 'TypeScript', 'Fastify', 'AWS Lambda', 'DynamoDB'],
+		preview: '/previews/inex-portal.webp',
+	},
+	{
 		name: 'Foxcode',
 		href: 'https://foxcod.com/',
 		role: 'Built the site from scratch',
@@ -217,7 +225,7 @@ export const projects: Project[] = [
 		role: 'Full stack, database to deploy',
 		blurb:
 			'Real estate crowdfunding platform in Oman, licensed by the Financial Services Authority and Sharia compliant. At Foxcode I built the investor and developer sides: onboarding, the project listings, the share subscriptions and the returns each portfolio tracks.',
-		tags: ['Laravel', 'Next.js', 'MySQL'],
+		tags: ['Next.js', 'NestJS', 'PostgreSQL', 'Docker'],
 		preview: '/previews/tamluk.webp',
 	},
 	{
