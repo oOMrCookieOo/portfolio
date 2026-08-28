@@ -413,8 +413,8 @@ html.lenis body {
 
 @layer base {
 	/*
-		Cursor semantics, straight out of colinlienard.com: the page is not text to
-		select, so the arrow stays an arrow, and a link that leaves the site says so.
+		Cursor semantics: the page is not text to select, so the arrow stays an
+		arrow, and a link that leaves the site says so.
 	*/
 	body {
 		cursor: default;

@@ -19,16 +19,16 @@ import { about, profile, roles, stack } from '@/data';
 import { useAccentColor } from '@/hooks/useAccent';
 
 export const variantNames = {
-	A: 'siddz, meta grid',
+	A: 'avatar, meta grid',
 	B: 'editorial, no photo',
 	C: 'info panel',
 	D: 'commit graph hero',
-	E: 'colinlienard, prose',
+	E: 'serif, prose',
 	F: 'cursor spotlight',
-	G: 'brittany, sticky sidebar',
-	H: 'paco, columns',
-	I: 'leerob, text first',
-	J: 'sticky, siddz header',
+	G: 'plain sticky sidebar',
+	H: 'labelled columns',
+	I: 'text first',
+	J: 'sticky, avatar header',
 	K: 'sticky, prose header',
 	L: 'sticky, poster header',
 	M: 'cover and index',
@@ -146,7 +146,7 @@ export function VariantD() {
 	);
 }
 
-// E: colinlienard flavour. Serif italic name, prose with the load-bearing words lifted.
+// E: serif italic name, prose with the load-bearing words lifted.
 export function VariantE() {
 	return (
 		<section id="top" className="max-w-[40rem] pt-30 md:pt-36">
@@ -228,8 +228,8 @@ export function VariantF() {
 	);
 }
 
-// I: leerob.com flavour. Handle as the title, bio with a short and long setting,
-// and a visual pinned beside the copy instead of an avatar.
+// I: handle as the title, bio with a short and long setting, and a visual
+// pinned beside the copy instead of an avatar.
 export function VariantI() {
 	const [long, setLong] = useState(false);
 	const handle = profile.github.split('/').pop() ?? '';

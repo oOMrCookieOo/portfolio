@@ -48,7 +48,7 @@ const socials: Social[] = [
 	},
 ];
 
-/** Social row where a card follows the cursor, after colinlienard.com. Mouse only. */
+/** Social row where a card follows the cursor. Mouse only. */
 export function SocialDock({ className }: { className?: string }) {
 	const [active, setActive] = useState<number>();
 	const [left, setLeft] = useState(0);

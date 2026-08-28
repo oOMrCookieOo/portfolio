@@ -23,7 +23,7 @@ const DEFAULT_RAIL: RailItem[] = [
 	{ id: 'contact', label: 'Get in touch' },
 ];
 
-/** G header: name, role, one line. The plain brittanychiang treatment. */
+/** G header: name, role, one line. The plainest of the five. */
 export function PlainHeader() {
 	return (
 		<>
@@ -34,7 +34,7 @@ export function PlainHeader() {
 	);
 }
 
-/** J header: the siddz treatment. Avatar, rotating role, meta lines. */
+/** J header: avatar, rotating role, meta lines. */
 export function MetaHeader() {
 	return (
 		<>
@@ -61,7 +61,7 @@ export function MetaHeader() {
 	);
 }
 
-/** K header: the colinlienard treatment. Serif italic name, prose, lifted keywords. */
+/** K header: serif italic name, prose, lifted keywords. */
 export function ProseHeader() {
 	return (
 		<>
@@ -180,7 +180,7 @@ export function SidebarShell({
 	);
 }
 
-/** H: paco.me layout. Prose, then labelled columns of links. */
+/** H: prose, then labelled columns of links. */
 export function ColumnsShell({
 	columns,
 	children,

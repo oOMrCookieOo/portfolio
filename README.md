@@ -51,15 +51,15 @@ six palettes and the custom cursor toggle.
 
 | Key | Layout |
 | --- | --- |
-| A | siddz.com flavour, avatar and meta grid |
+| A | avatar and a meta grid |
 | B | editorial, name at poster scale |
 | C | info panel on the left |
 | D | commit graph as the hero |
-| E | colinlienard flavour, serif italic name |
+| E | serif italic name, prose |
 | F | A plus a cursor spotlight |
 | G J K L O | sticky sidebar, five different headers |
-| H | paco.me flavour, labelled columns |
-| I | leerob.com flavour, short and long bio |
+| H | labelled columns of links |
+| I | short and long bio |
 | M | cover page with a numbered index |
 | N | datasheet: one claim, spec block, counted figures, expandable record |
 | **P** | **what ships** |
