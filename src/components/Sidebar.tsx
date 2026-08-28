@@ -6,9 +6,7 @@ import { RoleRotator } from '@/components/RoleRotator';
 import { SocialDock } from '@/components/SocialDock';
 import { useDocumentRef } from '@/components/useDocumentRef';
 import { profile, roles } from '@/data';
-import type { RailItem } from '@/sections';
-
-export type { RailItem };
+import type { RailItem } from '@/types';
 
 /** Sticky identity column with the section rail. */
 export function Sidebar({ rail }: { rail: RailItem[] }) {

@@ -1,3 +1,5 @@
+import type { RegistryBlock } from '@/types';
+
 /**
  * What the components page lists. Keep in step with registry.json, which is what
  * `npx shadcn build` turns into public/r/*.json.
@@ -9,14 +11,6 @@ export const REGISTRY_READY = false;
 
 // Change this to the deployed domain, or the copy buttons hand out a dead URL.
 export const REGISTRY_ORIGIN = 'https://isslem.dev';
-
-export type RegistryBlock = {
-	name: string;
-	slug: string;
-	blurb: string;
-	deps: string[];
-	notes?: string[];
-};
 
 export const blocks: RegistryBlock[] = [
 	{

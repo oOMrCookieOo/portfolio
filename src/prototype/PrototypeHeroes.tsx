@@ -11,7 +11,6 @@ import type { ComponentType } from 'react';
 import { Hero } from '@/components/Hero';
 import { PageLayout } from '@/components/PageLayout';
 import { experiences, profile, projects } from '@/data';
-import type { PageParts } from '@/App';
 import { DatasheetShell } from '@/prototype/DatasheetShell';
 import {
 	VariantB,
@@ -34,6 +33,7 @@ import {
 	SidebarShell,
 } from '@/prototype/ShellVariants';
 import { railFor } from '@/sections';
+import { VARIANT_KEYS, type PageParts, type VariantKey } from '@/types';
 
 const HEROES: Record<string, ComponentType> = {
 	A: Hero,
@@ -54,26 +54,6 @@ const SIDEBAR_HEADERS: Record<string, ComponentType> = {
 	L: EditorialHeader,
 	O: AboutFirstHeader,
 };
-
-export const VARIANT_KEYS = [
-	'A',
-	'B',
-	'C',
-	'D',
-	'E',
-	'F',
-	'G',
-	'H',
-	'I',
-	'J',
-	'K',
-	'L',
-	'M',
-	'N',
-	'O',
-	'P',
-] as const;
-export type VariantKey = (typeof VARIANT_KEYS)[number];
 
 // Columns for the paco flavoured shell, built from the same data as everything else.
 const columns = [

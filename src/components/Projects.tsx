@@ -1,6 +1,7 @@
 import { Reveal, Section } from '@/components/Section';
 import { brandColor, ICONS } from '@/components/Stack';
-import { projects, type Project } from '@/data';
+import { projects } from '@/data';
+import type { Project } from '@/types';
 import {
 	ProjectShowcase,
 	type ShowcaseItem,

@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 import { cn } from '@/lib/utils';
-
-export type PreviewTarget = { key: string; image?: string; label: string };
+import type { PreviewTarget } from '@/types';
 
 /** Floats a preview of the hovered row. Rows opt in with the `bind` helper. */
 export function FloatingPreview({

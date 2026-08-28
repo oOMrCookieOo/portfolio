@@ -13,7 +13,7 @@ import { RoleRotator } from '@/components/RoleRotator';
 import { SocialDock } from '@/components/SocialDock';
 import { useDocumentRef } from '@/components/useDocumentRef';
 import { about, profile, roles } from '@/data';
-import type { RailItem } from '@/sections';
+import type { RailItem } from '@/types';
 
 /** G header: name, role, one line. The plainest of the five. */
 export function PlainHeader() {

@@ -1,4 +1,7 @@
 // Everything editable lives here. Sections read from this file only.
+// The shapes live in types.ts.
+
+import type { Experience, Project, StackGroup } from '@/types';
 
 /**
  * Which layout ships. 'P' is the sticky sidebar in components/PageLayout.tsx;
@@ -29,12 +32,6 @@ export const profile = {
 export const about = [
 	'Fullstack engineer with six years shipping across recruitment, fuel retail, fintech and local marketplaces, from admin platforms and payment integrations to products the public actually uses. I own the arc from architecture to release: data models, APIs, third party integrations, and the deploys that carry them.',
 ];
-
-// icon values are keys of the ICONS map in components/Stack.tsx.
-export type StackGroup = {
-	label: string;
-	items: { name: string; icon: string }[];
-};
 
 export const stack: StackGroup[] = [
 	{
@@ -81,19 +78,6 @@ export const stack: StackGroup[] = [
 		],
 	},
 ];
-
-export type Experience = {
-	company: string;
-	role: string;
-	period: string;
-	place: string;
-	bullets: string[];
-	tags: string[];
-	/** The company site, linked from its name. */
-	href?: string;
-	/** Screenshot floated when the name is hovered, e.g. '/previews/inex.webp'. */
-	preview?: string;
-};
 
 export const experiences: Experience[] = [
 	{
@@ -156,18 +140,6 @@ export const experiences: Experience[] = [
 		tags: ['Laravel', 'Vue.js', 'MySQL'],
 	},
 ];
-
-export type Project = {
-	name: string;
-	blurb: string;
-	tags: string[];
-	/** Live site, when there still is one. */
-	href?: string;
-	/** Screenshot shown in the hover preview, e.g. '/previews/raaz.webp'. */
-	preview?: string;
-	/** What you actually did on it. Shown in the open row. */
-	role?: string;
-};
 
 export const projects: Project[] = [
 	{

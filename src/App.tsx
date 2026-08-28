@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState, type ComponentType, type ReactNode } from 'react';
+import { lazy, Suspense, useState, type ComponentType } from 'react';
 
 import { About } from '@/components/About';
 import { Background } from '@/components/Background';
@@ -16,6 +16,7 @@ import { site } from '@/data';
 import { readStoredRing } from '@/hooks/useAccent';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { useRoute } from '@/router';
+import { VARIANT_KEYS, type PageParts, type VariantKey } from '@/types';
 
 // The contribution graph pulls in motion and talks to two APIs. It sits below the
 // fold, so it loads as its own chunk instead of blocking first paint.
@@ -31,44 +32,12 @@ const GithubSection = lazy(() =>
 	import('@/components/GithubSection').then((m) => ({ default: m.GithubSection })),
 );
 
-export type PageParts = Record<
-	| 'about'
-	| 'graph'
-	| 'stack'
-	| 'projects'
-	| 'components'
-	| 'experience'
-	| 'background'
-	| 'contact'
-	| 'footer',
-	ReactNode
->;
-
 /*
 	The shipped layout is P. Every other variant still exists behind a toggle:
 	dev always shows the switcher, and any build shows it when the URL asks, with
 		?prototypes=1   or   ?variant=E
 	The prototype tree is a lazy chunk, so a normal visit never downloads it.
 */
-const KEYS = [
-	'A',
-	'B',
-	'C',
-	'D',
-	'E',
-	'F',
-	'G',
-	'H',
-	'I',
-	'J',
-	'K',
-	'L',
-	'M',
-	'N',
-	'O',
-	'P',
-] as const;
-type VariantKey = (typeof KEYS)[number];
 const SHIPPED: VariantKey = 'P';
 
 const Prototype = lazy(() => import('@/prototype/PrototypeHeroes')) as ComponentType<{
@@ -90,9 +59,9 @@ function prototypesRequested() {
 // data.ts picks the layout that ships. The URL only overrides it for a look.
 function readVariant(): VariantKey {
 	const asked = query().get('variant')?.toUpperCase() as VariantKey;
-	if (KEYS.includes(asked)) return asked;
+	if (VARIANT_KEYS.includes(asked)) return asked;
 	const chosen = site.variant as VariantKey;
-	return KEYS.includes(chosen) ? chosen : SHIPPED;
+	return VARIANT_KEYS.includes(chosen) ? chosen : SHIPPED;
 }
 
 export default function App() {
