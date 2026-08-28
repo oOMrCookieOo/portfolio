@@ -9,6 +9,30 @@ npm run preview
 npm run typecheck
 ```
 
+## Make it yours
+
+The fast way is to not type any of it. Hand your CV to an AI along with `src/data.ts`
+and ask it to refill that file with your own record, keeping every export, type and
+field name exactly as they are. It is one flat file of plain objects, so a model
+rewrites it in a single pass and you paste the result straight over the original.
+
+Something like:
+
+```
+Here are my CV and my portfolio's src/data.ts.
+Rewrite data.ts with my details. Keep the same exports, types and field names,
+change only the values. Omit href and preview where I have no live link or
+screenshot.
+```
+
+Then pick a layout with `?variant=`, pick a palette from the switcher pill, drop your
+photo in as `public/me.webp`, and that is the site. The tables further down list the
+variants and the palettes.
+
+Two things to check by hand afterwards, because a model will happily invent both:
+every `href` should resolve, and every `tags` entry should be a tool you have actually
+used.
+
 ## Where things are
 
 - `src/data.ts` is the only file with content in it. Name, bio, jobs, projects, links, stack. Edit there.
