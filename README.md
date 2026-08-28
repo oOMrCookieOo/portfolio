@@ -42,7 +42,7 @@ used.
 - `src/components/ui/*` shadcn components. `button` and `badge` are retuned to this project. `github-activity` came from the rare-ui registry.
 - `src/components/reui/scrollspy.tsx` from the reui registry, with one local fix noted in the file.
 - `src/hooks/useSmoothScroll.ts` Lenis, skipped when the visitor prefers reduced motion.
-- `src/components/SmoothCursor.tsx` the custom cursor, ported from hpbrn.com.
+- `registry/smooth-cursor/smooth-cursor.tsx` the custom cursor. It is a registry block the site also uses.
 - `src/prototype/*` the other layouts. Off by default, see below.
 
 ## The shipped layout
@@ -146,6 +146,11 @@ being written out separately.
 | `/` | the portfolio |
 | `/components` | the registry blocks, with live previews and install commands |
 
+`/components` is held back while `REGISTRY_READY` in `src/registry-index.ts` is `false`:
+the home section says coming soon and is not a link, the header drops its Components item,
+and both component routes fall through to the home page, so a stale link cannot reach
+install commands that resolve to nothing. Flip the flag once `public/r` is published.
+
 Routing is 40 lines in `src/router.tsx`: read the pathname, listen for popstate,
 intercept clicks on internal links. Hash links are left alone because the section
 rail uses them. Static hosts need the SPA fallback, which is why `public/_redirects`
@@ -165,12 +170,19 @@ colour, tuned separately for light and dark: graphite and emerald, ink and cobal
 and amber, forest and sage, oxide and brick, mono. The choice is remembered and applied
 before first paint.
 
+## Images
+
+- `public/me.webp`, square, 400px or more, set as `profile.avatar`. Without it the avatar
+  falls back to an `IM` monogram.
+- Hover previews live in `public/previews/`, referenced by the `preview` field on a job or
+  a project. A row with no `preview` shows its name in the tile instead of a screenshot.
+  Captures are 1280px wide webp, quality 82, which lands them around 30 to 60 kB.
+
 ## Still needed
 
-- `public/me.jpg`, square, 400px or more. Without it the avatar falls back to an `IM` monogram.
-- Project screenshots at `public/projects/`, otherwise the cards keep their gradient placeholder.
 - Check the public email in `src/data.ts`. It is the one from the CV, not the Foxcode address.
 - The phone number is in the footer. Delete it from `src/data.ts` if you would rather not publish it.
+- Publish the registry, then set `REGISTRY_READY` to `true`.
 
 ## Deploy
 
