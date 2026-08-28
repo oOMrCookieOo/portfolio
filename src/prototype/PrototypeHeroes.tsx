@@ -106,14 +106,17 @@ export default function PrototypeHeroes({
 	parts,
 	ring,
 	onRingChange,
+	showSwitcher = true,
 }: {
 	variant: VariantKey;
 	onPick: (variant: VariantKey) => void;
 	parts: PageParts;
 	ring: boolean;
 	onRingChange: (on: boolean) => void;
+	/** Off when a variant is what ships, on when the URL or a dev build asks to browse. */
+	showSwitcher?: boolean;
 }) {
-	const switcher = (
+	const switcher = showSwitcher ? (
 		<PrototypeSwitcher
 			variants={[...VARIANT_KEYS]}
 			current={variant}
@@ -122,7 +125,7 @@ export default function PrototypeHeroes({
 			ring={ring}
 			onRingChange={onRingChange}
 		/>
-	);
+	) : null;
 
 	const everything = (
 		<>

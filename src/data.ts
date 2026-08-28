@@ -1,5 +1,15 @@
 // Everything editable lives here. Sections read from this file only.
 
+/**
+ * Which layout ships. 'P' is the sticky sidebar in components/PageLayout.tsx;
+ * every other key is one of the layouts in src/prototype. Change this and the
+ * site renders that layout for everyone, with no switcher attached. A ?variant=
+ * in the URL still overrides it for a look.
+ */
+export const site = {
+	variant: 'P',
+} as const;
+
 export const profile = {
 	name: 'Maali Mohamed Islam',
 	shortName: 'Maali Mohamed Islam',

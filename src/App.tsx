@@ -12,6 +12,7 @@ import { PageLayout } from '@/components/PageLayout';
 import { Projects } from '@/components/Projects';
 import { SmoothCursor } from '../registry/smooth-cursor/smooth-cursor';
 import { Stack } from '@/components/Stack';
+import { site } from '@/data';
 import { readStoredRing } from '@/hooks/useAccent';
 import { REGISTRY_READY } from '@/registry-index';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
@@ -77,6 +78,7 @@ const Prototype = lazy(() => import('@/prototype/PrototypeHeroes')) as Component
 	parts: PageParts;
 	ring: boolean;
 	onRingChange: (on: boolean) => void;
+	showSwitcher: boolean;
 }>;
 
 const query = () => new URLSearchParams(location.search);
@@ -86,9 +88,12 @@ function prototypesRequested() {
 	return import.meta.env.DEV || params.has('prototypes') || params.has('variant');
 }
 
+// data.ts picks the layout that ships. The URL only overrides it for a look.
 function readVariant(): VariantKey {
-	const value = query().get('variant')?.toUpperCase() as VariantKey;
-	return KEYS.includes(value) ? value : SHIPPED;
+	const asked = query().get('variant')?.toUpperCase() as VariantKey;
+	if (KEYS.includes(asked)) return asked;
+	const chosen = site.variant as VariantKey;
+	return KEYS.includes(chosen) ? chosen : SHIPPED;
 }
 
 export default function App() {
@@ -147,7 +152,12 @@ export default function App() {
 					<Suspense fallback={<div className="h-[100dvh]" />}>
 						<ComponentsPage />
 					</Suspense>
-				) : showPrototypes ? (
+				) : showPrototypes || variant !== SHIPPED ? (
+					/*
+						Any layout other than P lives in the prototype chunk, so shipping one
+						means loading it for everyone. The switcher pill is a separate
+						question: it only appears when the URL or a dev build asks for it.
+					*/
 					<Suspense fallback={null}>
 						<Prototype
 							variant={variant}
@@ -155,6 +165,7 @@ export default function App() {
 							parts={parts}
 							ring={ring}
 							onRingChange={setRing}
+							showSwitcher={showPrototypes}
 						/>
 					</Suspense>
 				) : (
