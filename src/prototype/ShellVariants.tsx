@@ -13,15 +13,7 @@ import { RoleRotator } from '@/components/RoleRotator';
 import { SocialDock } from '@/components/SocialDock';
 import { useDocumentRef } from '@/components/useDocumentRef';
 import { about, profile, roles } from '@/data';
-
-export type RailItem = { id: string; label: string };
-
-const DEFAULT_RAIL: RailItem[] = [
-	{ id: 'stack', label: 'Stack' },
-	{ id: 'projects', label: 'Selected work' },
-	{ id: 'work', label: 'Experience' },
-	{ id: 'contact', label: 'Get in touch' },
-];
+import type { RailItem } from '@/sections';
 
 /** G header: name, role, one line. The plainest of the five. */
 export function PlainHeader() {
@@ -131,11 +123,11 @@ export function AboutFirstHeader() {
 /** Sticky sidebar layout: identity and rail on the left, content scrolls on the right. */
 export function SidebarShell({
 	header: Header,
-	rail = DEFAULT_RAIL,
+	rail,
 	children,
 }: {
 	header: ComponentType;
-	rail?: RailItem[];
+	rail: RailItem[];
 	children: ReactNode;
 }) {
 	const docRef = useDocumentRef();

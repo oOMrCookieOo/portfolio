@@ -1,19 +1,19 @@
 import type { ReactNode } from 'react';
 
-import { Sidebar, type RailItem } from '@/components/Sidebar';
+import { Sidebar } from '@/components/Sidebar';
+import { railFor } from '@/sections';
 
-// Every section that renders needs a rail entry, or the previous entry stays lit
-// while the missing one is on screen.
-export const RAIL: RailItem[] = [
-	{ id: 'about', label: 'About me' },
-	{ id: 'stack', label: 'Tech stack' },
-	{ id: 'work', label: 'Experience' },
-	{ id: 'projects', label: 'Selected work' },
-	{ id: 'github', label: 'Commits' },
-	{ id: 'components', label: 'Components' },
-	{ id: 'background', label: 'Education' },
-	{ id: 'contact', label: 'Get in touch' },
-];
+// The order here is the order App renders the sections in.
+export const RAIL = railFor([
+	'about',
+	'stack',
+	'work',
+	'projects',
+	'github',
+	'components',
+	'background',
+	'contact',
+]);
 
 /** The shipped layout: sticky identity column on the left, content on the right. */
 export function PageLayout({ children }: { children: ReactNode }) {

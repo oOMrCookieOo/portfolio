@@ -33,6 +33,7 @@ import {
 	ProseHeader,
 	SidebarShell,
 } from '@/prototype/ShellVariants';
+import { railFor } from '@/sections';
 
 const HEROES: Record<string, ComponentType> = {
 	A: Hero,
@@ -127,6 +128,9 @@ export default function PrototypeHeroes({
 		/>
 	) : null;
 
+	// The rail is built from this list, so the two cannot drift apart.
+	const everythingIds = ['github', 'stack', 'projects', 'work', 'background', 'contact'] as const;
+
 	const everything = (
 		<>
 			{parts.graph}
@@ -180,7 +184,9 @@ export default function PrototypeHeroes({
 	if (SidebarHeader) {
 		return (
 			<>
-				<SidebarShell header={SidebarHeader}>{everything}</SidebarShell>
+				<SidebarShell header={SidebarHeader} rail={railFor(everythingIds)}>
+					{everything}
+				</SidebarShell>
 				{switcher}
 			</>
 		);
