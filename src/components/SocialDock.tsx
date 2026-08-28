@@ -4,7 +4,7 @@ import {
 	LinkedinLogoIcon,
 	MediumLogoIcon,
 } from '@phosphor-icons/react';
-import { useRef, useState, type ComponentType } from 'react';
+import { useState, type ComponentType } from 'react';
 
 import { profile } from '@/data';
 import { cn } from '@/lib/utils';
@@ -52,7 +52,6 @@ const socials: Social[] = [
 export function SocialDock({ className }: { className?: string }) {
 	const [active, setActive] = useState<number>();
 	const [left, setLeft] = useState(0);
-	const row = useRef<HTMLDivElement>(null);
 
 	function track(index: number, node: HTMLElement) {
 		setLeft(node.offsetLeft + node.offsetWidth / 2);
@@ -63,7 +62,6 @@ export function SocialDock({ className }: { className?: string }) {
 
 	return (
 		<div
-			ref={row}
 			className={cn('relative flex items-center', className)}
 			onMouseLeave={() => setActive(undefined)}
 		>

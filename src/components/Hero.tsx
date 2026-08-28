@@ -5,6 +5,14 @@ import { RoleRotator } from '@/components/RoleRotator';
 import { SocialDock } from '@/components/SocialDock';
 import { about, profile, roles } from '@/data';
 
+// First letters of the name, so the fallback follows whoever the site is for.
+const initials = profile.name
+	.split(' ')
+	.slice(0, 2)
+	.map((part) => part[0])
+	.join('')
+	.toUpperCase();
+
 export function Avatar({ size = 'size-15 sm:size-16' }: { size?: string }) {
 	const [failed, setFailed] = useState(false);
 
@@ -13,7 +21,7 @@ export function Avatar({ size = 'size-15 sm:size-16' }: { size?: string }) {
 			<div
 				className={`flex shrink-0 items-center justify-center rounded-card border border-card-border bg-muted font-mono text-lg text-faint ${size}`}
 			>
-				IM
+				{initials}
 			</div>
 		);
 	}

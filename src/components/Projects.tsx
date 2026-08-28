@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 import { Reveal, Section } from '@/components/Section';
 import { brandColor, ICONS } from '@/components/Stack';
 import { projects } from '@/data';
@@ -29,11 +31,12 @@ function tagChips(project: Project) {
 	return project.tags.map((tag) => {
 		const key = TAG_ICONS[tag] ?? '';
 		const Icon = ICONS[key];
+		// Keyed: these are returned as an array, so a bare fragment warns.
 		return (
-			<>
+			<Fragment key={tag}>
 				{Icon ? <Icon color={brandColor(key)} className="size-3.5" /> : null}
 				{tag}
-			</>
+			</Fragment>
 		);
 	});
 }
