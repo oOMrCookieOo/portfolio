@@ -110,7 +110,7 @@ export const experiences: Experience[] = [
 		place: 'Muscat, Oman. Remote.',
 		period: 'Mar 2023 to Aug 2025',
 		bullets: [
-			'Worked across the client portfolio: OOMCO, Raaz, Rise, Intajee and Shabik.',
+			'Worked across the client portfolio: OOMCO, Raaz, Rise, Intajee, Tamluk and Shabik.',
 			'The clients were national names, Oman Oil Marketing Company, Omantel and Omran Group, so the work carried the release standards that come with them.',
 			'Integrated the Thawani payment API and put secure online payments into several of those products.',
 			'Built the backends and the admin panels the mobile apps ran on, and the APIs between them.',
@@ -210,6 +210,15 @@ export const projects: Project[] = [
 			'OKR platform for Omantel, where teams set objectives and track alignment and achievement across departments. At Foxcode I built it end to end, from the data model to the dashboards leadership reads.',
 		tags: ['NestJS', 'Next.js', 'PostgreSQL'],
 		preview: '/previews/rise.webp',
+	},
+	{
+		name: 'Tamluk',
+		href: 'https://tamluk.om/en',
+		role: 'Full stack, database to deploy',
+		blurb:
+			'Real estate crowdfunding platform in Oman, licensed by the Financial Services Authority and Sharia compliant. At Foxcode I built the investor and developer sides: onboarding, the project listings, the share subscriptions and the returns each portfolio tracks.',
+		tags: ['Laravel', 'Next.js', 'MySQL'],
+		preview: '/previews/tamluk.webp',
 	},
 	{
 		name: 'Offerlik',
