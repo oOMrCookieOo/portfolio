@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>Maali Mohamed Islam, fullstack engineer</title>
+		<meta
+			name="description"
+			content="Fullstack engineer. Six years building web products: admin platforms, payment flows and system rewrites."
+		/>
+		<meta name="theme-color" content="#ffffff" />
+		<meta property="og:title" content="Maali Mohamed Islam, fullstack engineer" />
+		<meta
+			property="og:description"
+			content="Six years building web products: admin platforms, payment flows and system rewrites."
+		/>
+		<meta property="og:type" content="website" />
+		<script>
+			// Runs before paint so the page never flashes the wrong theme or palette.
+			// Storage access throws in some contexts, and an uncaught throw here would
+			// skip the theme class entirely.
+			try {
+				// Light is the default. Only a stored choice turns dark on.
+				const dark = localStorage.getItem('theme') === 'dark';
+				document.documentElement.classList.toggle('dark', dark);
+
+				const palette = localStorage.getItem('palette');
+				if (palette && palette !== 'graphite') document.documentElement.dataset.palette = palette;
+
+				// The browser chrome should match the theme actually in use.
+				const meta = document.querySelector('meta[name="theme-color"]');
+				if (meta) meta.setAttribute('content', dark ? '#070709' : '#ffffff');
+			} catch {
+				document.documentElement.classList.remove('dark');
+			}
+		</script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.tsx"></script>
+	</body>
+</html>
