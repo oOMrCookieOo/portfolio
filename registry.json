@@ -1,0 +1,137 @@
+{
+	"$schema": "https://ui.shadcn.com/schema/registry.json",
+	"name": "isslem",
+	"homepage": "https://isslem.dev",
+	"items": [
+		{
+			"name": "app-shell",
+			"type": "registry:block",
+			"title": "App shell",
+			"description": "Collapsible nav rail, inset content panel and a header with breadcrumbs. Router agnostic: it takes a pathname and a link component, so nothing about it is tied to Next, React Router or any data layer. Install app-shell-demo alongside it for a runnable example with mock data.",
+			"registryDependencies": [
+				"sidebar",
+				"breadcrumb",
+				"separator"
+			],
+			"dependencies": [
+				"lucide-react"
+			],
+			"files": [
+				{
+					"path": "registry/app-shell/app-shell.tsx",
+					"type": "registry:component",
+					"target": "components/app-shell/app-shell.tsx"
+				},
+				{
+					"path": "registry/app-shell/app-sidebar.tsx",
+					"type": "registry:component",
+					"target": "components/app-shell/app-sidebar.tsx"
+				},
+				{
+					"path": "registry/app-shell/app-breadcrumbs.tsx",
+					"type": "registry:component",
+					"target": "components/app-shell/app-breadcrumbs.tsx"
+				},
+				{
+					"path": "registry/app-shell/app-shell-active.ts",
+					"type": "registry:lib",
+					"target": "components/app-shell/app-shell-active.ts"
+				},
+				{
+					"path": "registry/app-shell/app-shell.types.ts",
+					"type": "registry:lib",
+					"target": "components/app-shell/app-shell.types.ts"
+				}
+			]
+		},
+		{
+			"name": "app-shell-demo",
+			"type": "registry:block",
+			"title": "App shell demo",
+			"description": "A runnable back office screen built on app-shell: mock nav, a filterable table, stat cards and an activity feed. Install app-shell first.",
+			"registryDependencies": [
+				"input"
+			],
+			"dependencies": [
+				"lucide-react"
+			],
+			"files": [
+				{
+					"path": "registry/app-shell/app-shell.mock.ts",
+					"type": "registry:lib",
+					"target": "components/app-shell/app-shell.mock.ts"
+				},
+				{
+					"path": "registry/app-shell/app-shell.demo.tsx",
+					"type": "registry:component",
+					"target": "components/app-shell/app-shell.demo.tsx"
+				}
+			]
+		},
+		{
+			"name": "project-showcase",
+			"type": "registry:block",
+			"title": "Project showcase",
+			"description": "A list of work where hovering a row floats a preview beside the cursor. One rAF loop writes the transform, so pointer movement never re-renders React; the preview trails because the loop lerps toward the pointer.",
+			"registryDependencies": [],
+			"dependencies": [
+				"lucide-react",
+				"motion"
+			],
+			"files": [
+				{
+					"path": "registry/project-showcase/project-showcase.tsx",
+					"type": "registry:component",
+					"target": "components/ui/project-showcase.tsx"
+				},
+				{
+					"path": "registry/project-showcase/project-showcase.demo.tsx",
+					"type": "registry:component",
+					"target": "components/ui/project-showcase.demo.tsx"
+				}
+			]
+		},
+		{
+			"name": "smooth-cursor",
+			"type": "registry:component",
+			"title": "Smooth cursor",
+			"description": "A drawn cursor that springs after the pointer, tilts into its direction of travel, squashes with speed and swaps to a hand over anything clickable. Position and angle are both springs integrated at a fixed 360Hz substep, so the motion is the same at 60Hz and 144Hz, and no React state is involved.",
+			"registryDependencies": [],
+			"dependencies": [],
+			"files": [
+				{
+					"path": "registry/smooth-cursor/smooth-cursor.tsx",
+					"type": "registry:component",
+					"target": "components/ui/smooth-cursor.tsx"
+				},
+				{
+					"path": "registry/smooth-cursor/smooth-cursor.demo.tsx",
+					"type": "registry:component",
+					"target": "components/ui/smooth-cursor.demo.tsx"
+				}
+			]
+		},
+		{
+			"name": "scroll-traced-rail",
+			"type": "registry:component",
+			"title": "Scroll traced rail",
+			"description": "A vertical rail that draws itself as its content scrolls past, for timelines and step lists. Stretches to any height without measuring, follows the theme, and draws in full under prefers-reduced-motion.",
+			"registryDependencies": [],
+			"dependencies": [
+				"motion"
+			],
+			"files": [
+				{
+					"path": "registry/scroll-traced-rail/scroll-traced-rail.tsx",
+					"type": "registry:component",
+					"target": "components/ui/scroll-traced-rail.tsx"
+				},
+				{
+					"path": "registry/scroll-traced-rail/scroll-traced-rail.demo.tsx",
+					"type": "registry:component",
+					"target": "components/ui/scroll-traced-rail.demo.tsx"
+				}
+			]
+		}
+	]
+}
