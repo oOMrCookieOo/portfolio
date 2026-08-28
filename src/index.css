@@ -35,6 +35,9 @@
 	--surface-accent-foreground: #111111;
 	--destructive: #b42318;
 	--destructive-foreground: #ffffff;
+	/* Inverted against the page in light, a lifted surface in dark. Both follow the palette. */
+	--tooltip: var(--foreground);
+	--tooltip-foreground: var(--background);
 	color-scheme: light;
 }
 
@@ -56,6 +59,8 @@
 	--surface-accent-foreground: #f0f0f0;
 	--destructive: #f97066;
 	--destructive-foreground: #070709;
+	--tooltip: color-mix(in oklab, var(--foreground) 14%, var(--background));
+	--tooltip-foreground: var(--foreground);
 	color-scheme: dark;
 }
 
@@ -79,6 +84,8 @@
 	--color-accent: var(--accent);
 	--color-destructive: var(--destructive);
 	--color-destructive-foreground: var(--destructive-foreground);
+	--color-tooltip: var(--tooltip);
+	--color-tooltip-foreground: var(--tooltip-foreground);
 
 	--radius-card: var(--radius);
 	/* The vendored primitives use these names; map them so one --radius drives all. */
